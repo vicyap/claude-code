@@ -1,10 +1,10 @@
 # PR Review Toolkit
 
-A comprehensive collection of specialized agents for thorough pull request review, covering code comments, test coverage, error handling, type design, code quality, and code simplification.
+A comprehensive collection of specialized agents for thorough pull request review, covering code comments, test coverage, type design, code quality, and code simplification.
 
 ## Overview
 
-This plugin bundles 6 expert review agents that each focus on a specific aspect of code quality. Use them individually for targeted reviews or together for comprehensive PR analysis.
+This plugin bundles 5 expert review agents that each focus on a specific aspect of code quality. Use them individually for targeted reviews or together for comprehensive PR analysis.
 
 ## Agents
 
@@ -50,28 +50,7 @@ This plugin bundles 6 expert review agents that each focus on a specific aspect 
 "Are there any critical test gaps?"
 ```
 
-### 3. silent-failure-hunter
-**Focus**: Error handling and silent failures
-
-**Analyzes:**
-- Silent failures in catch blocks
-- Inadequate error handling
-- Inappropriate fallback behavior
-- Missing error logging
-
-**When to use:**
-- After implementing error handling
-- When reviewing try/catch blocks
-- Before finalizing PRs with error handling
-
-**Triggers:**
-```
-"Review the error handling"
-"Check for silent failures"
-"Analyze catch blocks in this PR"
-```
-
-### 4. type-design-analyzer
+### 3. type-design-analyzer
 **Focus**: Type design quality and invariants
 
 **Analyzes:**
@@ -92,7 +71,7 @@ This plugin bundles 6 expert review agents that each focus on a specific aspect 
 "Check if this type has strong invariants"
 ```
 
-### 5. code-reviewer
+### 4. code-reviewer
 **Focus**: General code review for project guidelines
 
 **Analyzes:**
@@ -113,7 +92,7 @@ This plugin bundles 6 expert review agents that each focus on a specific aspect 
 "Review this code before I commit"
 ```
 
-### 6. code-simplifier
+### 5. code-simplifier
 **Focus**: Code simplification and refactoring
 
 **Analyzes:**
@@ -147,9 +126,6 @@ Simply ask questions that match an agent's focus area, and Claude will automatic
 "Can you check if the tests cover all edge cases?"
 → Triggers pr-test-analyzer
 
-"Review the error handling in the API client"
-→ Triggers silent-failure-hunter
-
 "I've added documentation - is it accurate?"
 → Triggers comment-analyzer
 ```
@@ -161,10 +137,9 @@ For thorough PR review, ask for multiple aspects:
 ```
 "I'm ready to create this PR. Please:
 1. Review test coverage
-2. Check for silent failures
-3. Verify code comments are accurate
-4. Review any new types
-5. General code review"
+2. Verify code comments are accurate
+3. Review any new types
+4. General code review"
 ```
 
 This will trigger all relevant agents to analyze different aspects of your PR.
@@ -200,8 +175,6 @@ Agents provide confidence scores for their findings:
 
 **pr-test-analyzer**: Rates test gaps 1-10 (10 = critical, must add)
 
-**silent-failure-hunter**: Flags severity of error handling issues
-
 **type-design-analyzer**: Rates 4 dimensions on 1-10 scale
 
 **code-reviewer**: Scores issues 0-100 (91-100 = critical)
@@ -223,7 +196,6 @@ All agents provide structured, actionable output:
 
 **Before Committing:**
 - code-reviewer (general quality)
-- silent-failure-hunter (if changed error handling)
 
 **Before Creating PR:**
 - pr-test-analyzer (test coverage check)
@@ -288,11 +260,10 @@ This plugin works great with:
 
 **Recommended workflow:**
 1. Write code → **code-reviewer**
-2. Fix issues → **silent-failure-hunter** (if error handling)
-3. Add tests → **pr-test-analyzer**
-4. Document → **comment-analyzer**
-5. Review passes → **code-simplifier** (polish)
-6. Create PR
+2. Add tests → **pr-test-analyzer**
+3. Document → **comment-analyzer**
+4. Review passes → **code-simplifier** (polish)
+5. Create PR
 
 ## Contributing
 

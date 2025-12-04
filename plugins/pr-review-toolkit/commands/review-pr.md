@@ -21,7 +21,6 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 
    - **comments** - Analyze code comment accuracy and maintainability
    - **tests** - Review test coverage quality and completeness
-   - **errors** - Check error handling for silent failures
    - **types** - Analyze type design and invariants (if new types added)
    - **code** - General code review for project guidelines
    - **simplify** - Simplify code for clarity and maintainability
@@ -38,7 +37,6 @@ Run a comprehensive pull request review using multiple specialized agents, each 
    - **Always applicable**: code-reviewer (general quality)
    - **If test files changed**: pr-test-analyzer
    - **If comments/docs added**: comment-analyzer
-   - **If error handling changed**: silent-failure-hunter
    - **If types added/modified**: type-design-analyzer
    - **After passing review**: code-simplifier (polish and refine)
 
@@ -96,8 +94,8 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 
 **Specific aspects:**
 ```
-/pr-review-toolkit:review-pr tests errors
-# Reviews only test coverage and error handling
+/pr-review-toolkit:review-pr tests
+# Reviews only test coverage
 
 /pr-review-toolkit:review-pr comments
 # Reviews only code comments
@@ -123,11 +121,6 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 - Reviews behavioral test coverage
 - Identifies critical gaps
 - Evaluates test quality
-
-**silent-failure-hunter**:
-- Finds silent failures
-- Reviews catch blocks
-- Checks error logging
 
 **type-design-analyzer**:
 - Analyzes type encapsulation
@@ -158,7 +151,7 @@ Run a comprehensive pull request review using multiple specialized agents, each 
 **Before committing:**
 ```
 1. Write code
-2. Run: /pr-review-toolkit:review-pr code errors
+2. Run: /pr-review-toolkit:review-pr code
 3. Fix any critical issues
 4. Commit
 ```
